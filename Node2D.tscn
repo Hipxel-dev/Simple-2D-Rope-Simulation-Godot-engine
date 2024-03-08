@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Node2D.gd" type="Script" id=1]
+[ext_resource path="res://art/ring_small.png" type="Texture" id=2]
+[ext_resource path="res://DampedSpringJoint2D.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 11.5, 193.5 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -327.0 ]
+}
+
+[node name="point" type="RigidBody2D" parent="." groups=["phys_obj"]]
+position = Vector2( 109, 44 )
+mass = 0.01
+gravity_scale = 0.0
+linear_damp = 1.2
+
+[node name="tex" type="Sprite" parent="point"]
+visible = false
+position = Vector2( 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+damping = 0.01
+script = ExtResource( 3 )
+
+[node name="wall2" type="KinematicBody2D" parent="."]
+position = Vector2( 255, 817 )
+rotation = 1.5708
+
+[node name="col" type="CollisionShape2D" parent="wall2"]
+position = Vector2( -11.5, 85.5 )
+shape = SubResource( 2 )
